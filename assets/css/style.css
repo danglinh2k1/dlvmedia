@@ -200,6 +200,15 @@ section {
   font-family: "Nunito", sans-serif;
   margin-top: 3px;
 }
+.section-header h2{
+          background-image: linear-gradient(to right, #27a4a8, #2aaf61);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          margin:20px 0px;
+          font-size:58px;
+          font-weight: 800;    
+}
 
 /*--------------------------------------------------------------
 # Navigation Menu
