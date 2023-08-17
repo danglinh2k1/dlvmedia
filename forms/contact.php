@@ -1,33 +1,40 @@
-<!-- <?php
-/**
-* Requires the "PHP Email Form" library
-* The "PHP Email Form" library is available only in the pro version of the template
-* The library should be uploaded to: vendor/php-email-form/php-email-form.php
-* For more info and help: https://bootstrapmade.com/php-email-form/
-*/
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-// Replace contact@example.com with your real receiving email address
-// $receiving_email_address = 'mdlmedia123@gmail.com';
+require 'path/to/PHPMailer/Exception.php';
+require 'path/to/PHPMailer/PHPMailer.php';
+require 'path/to/PHPMailer/SMTP.php';
 
-// if( file_exists($php_email_form = '../assets/vendor/php-email-form' )) {
-// include( $php_email_form );
-// } else {
-// die( 'Unable to load the "PHP Email Form" Library!');
-// }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
-// $contact = new PHP_Email_Form;
-// $contact->ajax = true;
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtp.example.com';  // Địa chỉ máy chủ SMTP của bạn
+    $mail->SMTPAuth = true;
+    $mail->Username = 'danglinh10062001@gmail.com'; // Email của bạn
+    $mail->Password = '01635404930Ll'; // Mật khẩu email của bạn
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-// $contact->to = $receiving_email_address;
-// $contact->from_name = $_POST['name'];
-// $contact->from_email = $_POST['email'];
-// $contact->subject = $_POST['subject'];
+    try {
+        // Thiết lập thông tin gửi
+        $mail->setFrom($email, $name);
+        $mail->addAddress('danglinh10062001@gmail.com');  // Địa chỉ email người nhận
+        $mail->Subject = $subject;
+        $mail->Body = $message;
 
+        // Gửi email
+        $mail->send();
 
-
-// $contact->add_message( $_POST['name'], 'From');
-// $contact->add_message( $_POST['email'], 'Email');
-// $contact->add_message( $_POST['message'], 'Message', 10);
-
-// echo $contact->send();
-// ?> -->
+        // Gửi email thành công
+        echo 'Your message has been sent. Thank you!';
+    } catch (Exception $e) {
+        // Lỗi gửi email
+        echo 'An error occurred: ' . $mail->ErrorInfo;
+    }
+}
