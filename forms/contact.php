@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail->Host = 'smtp.example.com';  // Địa chỉ máy chủ SMTP của bạn
     $mail->SMTPAuth = true;
     $mail->Username = 'danglinh10062001@gmail.com'; // Email của bạn
-    $mail->Password = '01635404930Ll'; // Mật khẩu email của bạn
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->Password = ''; // Mật khẩu email của bạn
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
 
     try {
         // Thiết lập thông tin gửi
